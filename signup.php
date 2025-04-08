@@ -42,20 +42,65 @@
     </style>
 </head>
 <body class="d-flex align-items-center justify-content-center min-vh-100">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <?php
+        include "./php/koneksi.php";
+        if(isset($_POST["register"])) {
+            $email = $_POST['email'];
+            $nama = $_POST['name'];
+            $password = $_POST['password'];
+            
+            $sql = "INSERT INTO USER (email, password, name) VALUES ('$email', '$password', '$nama')";
+
+            $check = mysqli_query($db, "SELECT * FROM USER WHERE email = '$email'");
+            if(mysqli_num_rows($check) > 0) {
+                echo "<script>
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Email sudah terdaftar',
+                        icon: 'error'
+                    });
+                </script>";
+            } else {
+                if(mysqli_query($db, $sql)) {
+                    echo "<script>
+                        Swal.fire({
+                            title: 'Pendaftaran berhasil',
+                            text: 'Silahkan login menggunakan email: " . $email . "',
+                            icon: 'success',
+                            confirmButtonText: 'Login Sekarang'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = 'login.php';
+                            }
+                        });
+                    </script>";
+                } else {
+                    echo "<script>
+                        Swal.fire({
+                            title: 'Error',
+                            text: '".mysqli_error($db)."',
+                            icon: 'error'
+                        });
+                    </script>";
+                }
+            }
+        }
+    ?>
     <div class="form-container">
         <h1 class="text-center mb-2">Daftar Dulu Yuk..</h1>
         <p class="text-center mb-4">Menfess merupakan platform digital untuk kamu yang malu buat confess ke pujaan hati kamu :v</p>
-        <form class="needs-validation" novalidate>
+        <form class="needs-validation" novalidate method="POST">
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Example@domain.com" required>
+                <input type="email" class="form-control" name="email" id="email" placeholder="Example@domain.com" required>
                 <div class="invalid-feedback">
                     Harap masukkan email yang sesuai
                 </div>
             </div>
             <div class="mb-3">
                 <label for="name" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="name" placeholder="Nama Samaran Kamu" required>
+                <input type="text" class="form-control" name="name" id="name" placeholder="Nama Samaran Kamu" required>
                 <div class="invalid-feedback">
                     Harap masukkan Nama yang sesuai
                 </div>
@@ -63,7 +108,7 @@
             <div class="mb-3">
                 <label for="password" class="form-label">Kata Sandi</label>
                 <div class="input-group">
-                    <input type="password" class="form-control" id="password" placeholder="Masukan kata sandi kamu disini" required>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Masukan kata sandi kamu disini" required>
                 </div>
                 <div class="invalid-feedback">
                     Harap masukkan password yang sesuai 
@@ -76,36 +121,10 @@
                 </div>
                 <a href="login.html">Sudah punya akun</a>
             </div>
-            <button type="submit" class="btn w-100">Daftar</button>
+            <button type="submit" class="btn w-100" name="register">Daftar</button>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        (() => {
-        'use strict'
-
-
-        const forms = document.querySelectorAll('.needs-validation')
-
-        Array.from(forms).forEach(form => {
-            form.addEventListener('submit', event => {
-                const passwordInput = form.querySelector('#password');
-
-
-            if (passwordInput.value.length <= 8) {
-                passwordInput.setCustomValidity('Password harus lebih dari 8 karakter');
-            } else {
-                passwordInput.setCustomValidity('');
-            }
-                if (!form.checkValidity()) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                }
-
-                form.classList.add('was-validated')
-                }, false)
-            })
-        })()
-    </script>
+    <script src="./js/snippets.js"></script>
 </body>
 </html>
