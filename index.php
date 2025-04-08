@@ -16,7 +16,7 @@
             exit();
         }
         
-        // Debug session
+
         error_log("Session data: " . print_r($_SESSION, true));
     ?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 mb-5 bg-white rounded">

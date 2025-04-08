@@ -69,11 +69,11 @@
                     $_SESSION['user_email'] = $user['email'];
                     $_SESSION['is_login'] = true;
                     
-                    // Verifikasi session sebelum redirect
-                    error_log("Session before redirect: " . print_r($_SESSION, true));
+
+                    // error_log("Session before redirect: " . print_r($_SESSION, true));
                     
-                    // Beri sedikit delay untuk memastikan session tersimpan
-                    sleep(1);
+
+                    // sleep(1);
                     header("Location: index.php");
                 } else {
                     echo "<script>
