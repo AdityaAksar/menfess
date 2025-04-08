@@ -1,16 +1,36 @@
-const exampleModal = document.getElementById('exampleModal')
-if (exampleModal) {
-  exampleModal.addEventListener('show.bs.modal', event => {
-    // Button that triggered the modal
-    const button = event.relatedTarget
-    // Extract info from data-bs-* attributes
-    const recipient = button.getAttribute('data-bs-whatever')
-    // If necessary, you could initiate an Ajax request here
-    // and then do the updating in a callback.
+(() => {
+    'use strict'
 
-    // Update the modal's content.
-    const modalTitle = exampleModal.querySelector('.modal-title')
-    const modalBodyInput = exampleModal.querySelector('.modal-body input')
+    const forms = document.querySelectorAll('.needs-validation')
 
-  })
-}
+    Array.from(forms).forEach(form => {
+        const passwordInput = form.querySelector('#password');
+        
+        // Real-time validation for password
+        passwordInput.addEventListener('input', () => {
+            if (passwordInput.value.length <= 8) {
+                passwordInput.setCustomValidity('Password harus lebih dari 8 karakter');
+            } else {
+                passwordInput.setCustomValidity('');
+            }
+            passwordInput.reportValidity();
+        });
+
+        form.addEventListener('submit', event => {
+            if (passwordInput.value.length <= 8) {
+                passwordInput.setCustomValidity('Password harus lebih dari 8 karakter');
+                event.preventDefault();
+                event.stopPropagation();
+            } else {
+                passwordInput.setCustomValidity('');
+            }
+            
+            form.classList.add('was-validated');
+            
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        }, false)
+    })
+})()
