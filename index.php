@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 mb-5 bg-white rounded">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="./img/menfess.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
