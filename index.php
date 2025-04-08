@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <?php
+        include "./php/koneksi.php";
         session_start();
 
         if (!isset($_SESSION['is_login'])) {
@@ -18,6 +20,30 @@
         
 
         error_log("Session data: " . print_r($_SESSION, true));
+        if(isset($_POST["kirim"])){
+            $category = $_POST['category'];
+            $content = $_POST['content'];
+            $user_id = $_SESSION['id_user'];
+            
+            $sql = "INSERT INTO POST (content, id_user, id_category) VALUES ($content, $user_id, $category)";
+            if(mysqli_query($db, $sql)) {
+                echo "<script>
+                    Swal.fire({
+                        title: 'Upload Berhasil',
+                        text: 'Pesan telah terkirim!',
+                        icon: 'success',
+                    });
+                    </script>";
+            } else {
+                echo "<script>
+                    Swal.fire({
+                        title: 'Error',
+                        text: '".mysqli_error($db)."',
+                        icon: 'error'
+                    });
+                </script>";
+            }
+        }
     ?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 mb-5 bg-white rounded">
         <div class="container-fluid">
@@ -53,22 +79,14 @@
                         </ul>
                     </li>
                 </ul>
-                <!-- <div class="d-flex align-items-center">
-                    <a role="button" class="btn btn-primary px-3 me-2">
-                      Masuk
-                    </a>
-                    <a role="button" class="btn btn-primary me-3" href="signup.html">
-                      Daftar
-                    </a>
-                </div> -->
                 <form class="d-flex" role="search">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">Search</button>
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
         </div>
     </nav>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Buat Postingan</button>
+    <button type="button" class="btn btn-primary mx-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Buat Postingan</button>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -77,16 +95,26 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label for="category" class="col-form-label">Pilih Kategori Postingan</label>
+                            <select class="form-select" aria-label="Default select example" id="category" name="category">
+                                <option selected>Pilih Kategori Pesan</option>
+                                <option value="1">Umum</option>
+                                <option value="2">Sekolah</option>
+                                <option value="3">Kerja</option>
+                                <option value="4">Romansa</option>
+                            </select>
+                        </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Pesan:</label>
-                            <textarea class="form-control" rows="10" id="message-text"></textarea>
+                            <textarea class="form-control" rows="10" id="message-text" name="content"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="button" class="btn btn-primary" name="kirim">Kirim</button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                  <button type="button" class="btn btn-primary">Kirim</button>
                 </div>
             </div>
         </div>
