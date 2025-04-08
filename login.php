@@ -42,6 +42,51 @@
     </style>
 </head>
 <body class="d-flex align-items-center justify-content-center min-vh-100">
+    <?php
+        session_start(); 
+        include "./php/koneksi.php";
+        
+        if (isset($_SESSION['user_id'])) {
+            header("Location: index.php");
+            exit();
+        }
+
+        include "./php/koneksi.php";
+        if(isset($_POST["login"])) {
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+
+            $query = "SELECT * FROM USER WHERE email = '$email'";
+            $result = mysqli_query($db, $query);
+
+            if(mysqli_num_rows($result) > 0) {
+                $user = mysqli_fetch_assoc($result);
+                if(password_verify($password, $user['password'])) {
+                    session_start();
+                    $_SESSION['user_id'] = $user['id'];
+                    $_SESSION['user_email'] = $user['email'];
+                    header("Location: dashboard.php");
+                    exit();
+                } else {
+                    echo "<script>
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Password salah',
+                            icon: 'error'
+                        });
+                    </script>";
+                }
+            } else {
+                echo "<script>
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Email tidak terdaftar',
+                        icon: 'error'
+                    });
+                </script>";
+            }
+        }
+    ?>
     <div class="form-container">
         <h1 class="text-center mb-2">Masuk Dulu Yuk..</h1>
         <p class="text-center mb-4">Menfess merupakan platform digital untuk kamu yang malu buat confess ke pujaan hati kamu :v</p>
@@ -58,9 +103,9 @@
                 <div class="input-group">
                     <input type="password" class="form-control" id="password" placeholder="Masukan kata sandi kamu disini" required>
                 </div>
-                <!-- <div class="invalid-feedback">
+                <div class="invalid-feedback">
                     Harap masukkan password yang sesuai 
-                </div> -->
+                </div>
             </div>
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <div class="form-check">
@@ -76,31 +121,6 @@
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        (() => {
-        'use strict'
-
-
-        const forms = document.querySelectorAll('.needs-validation')
-
-        Array.from(forms).forEach(form => {
-            form.addEventListener('submit', event => {
-                const passwordInput = form.querySelector('#password');
-
-                if (passwordInput.value.length <= 8) {
-                        passwordInput.setCustomValidity('Password harus lebih dari 8 karakter');
-                    } else {
-                        passwordInput.setCustomValidity('');
-                    }
-                if (!form.checkValidity()) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                }
-
-                form.classList.add('was-validated')
-                }, false)
-            })
-        })()
-    </script>
+    <script src="./js/snippets.js"></script>
 </body>
 </html>

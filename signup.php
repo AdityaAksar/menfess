@@ -42,6 +42,14 @@
     </style>
 </head>
 <body class="d-flex align-items-center justify-content-center min-vh-100">
+    <?php
+        session_start(); 
+
+        if (isset($_SESSION['user_id'])) {
+            header("Location: index.php");
+            exit();
+        }
+    ?>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <?php
         include "./php/koneksi.php";
