@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+    <?php
+        session_start();
+
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: signup.php");
+            exit();
+        }
+    ?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 mb-5 bg-white rounded">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
@@ -17,7 +25,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.php">Untuk Anda</a>
+                        <a class="nav-link active" aria-current="page" href="#">Untuk Anda</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Terbaru</a>
@@ -26,17 +34,21 @@
                         <a class="nav-link" href="#">Paling Dicari</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="ruang.php">Ruang</a>
+                        <a class="nav-link" href="#">Ruang</a>
                     </li>
                 </ul>
-                <div class="d-flex align-items-center">
-                    <a role="button" class="btn btn-primary px-3 me-2">
-                    Masuk
-                    </a>
-                    <a role="button" class="btn btn-primary me-3" href="signup.html">
-                    Daftar
-                    </a>
-                </div>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="./node_modules/bootstrap-icons/icons/person-circle.svg" alt="" height="22">
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="dropdown-item">Profil</a></li>
+                            <li><a href="#" class="dropdown-item">Ganti Password</a></li>
+                            <li><a href="#" class="dropdown-item">Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
