@@ -57,7 +57,7 @@
 
             error_log("Input password: " . $password);
             
-            $query = "SELECT name, email, password FROM USER WHERE email = '$email'";
+            $query = "SELECT id_user, name, email, password FROM USER WHERE email = '$email'";
             $result = mysqli_query($db, $query);
             
             if(mysqli_num_rows($result) > 0) {
@@ -65,6 +65,7 @@
                 error_log("User data from DB: " . print_r($user, true));
                 
                 if(password_verify($password, $user['password']) || $password === $user['password']) {
+                    $_SESSION['id_user'] = $user['id_user'];
                     $_SESSION['name'] = $user['name'];
                     $_SESSION['user_email'] = $user['email'];
                     $_SESSION['is_login'] = true;
