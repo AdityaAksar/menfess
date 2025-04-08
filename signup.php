@@ -45,7 +45,7 @@
     <?php
         session_start(); 
 
-        if (isset($_SESSION['user_id'])) {
+        if (isset($_SESSION['is_login'])) {
             header("Location: index.php");
             exit();
         }
@@ -127,7 +127,7 @@
                     <input class="form-check-input" type="checkbox" id="remember">
                     <label class="form-check-label" for="remember">Ingat aku?</label>
                 </div>
-                <a href="login.html">Sudah punya akun</a>
+                <a href="login.php">Sudah punya akun</a>
             </div>
             <button type="submit" class="btn w-100" name="register">Daftar</button>
         </form>

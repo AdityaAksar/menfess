@@ -11,10 +11,13 @@
     <?php
         session_start();
 
-        if (!isset($_SESSION['user_id'])) {
-            header("Location: signup.php");
+        if (!isset($_SESSION['is_login'])) {
+            header("Location: login.php");
             exit();
         }
+        
+        // Debug session
+        error_log("Session data: " . print_r($_SESSION, true));
     ?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 mb-5 bg-white rounded">
         <div class="container-fluid">
@@ -41,11 +44,12 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="./node_modules/bootstrap-icons/icons/person-circle.svg" alt="" height="22">
+                            Halo, <?php echo $_SESSION['name']; ?>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#" class="dropdown-item">Profil</a></li>
                             <li><a href="#" class="dropdown-item">Ganti Password</a></li>
-                            <li><a href="#" class="dropdown-item">Log Out</a></li>
+                            <li><a href="logout.php" class="dropdown-item">Log Out</a></li>
                         </ul>
                     </li>
                 </ul>

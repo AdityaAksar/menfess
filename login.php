@@ -42,31 +42,39 @@
     </style>
 </head>
 <body class="d-flex align-items-center justify-content-center min-vh-100">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <?php
-        session_start(); 
+        session_start();
         include "./php/koneksi.php";
         
-        if (isset($_SESSION['user_id'])) {
+        if (isset($_SESSION['is_login'])) {
             header("Location: index.php");
             exit();
         }
-
-        include "./php/koneksi.php";
         if(isset($_POST["login"])) {
             $email = $_POST['email'];
-            $password = $_POST['password'];
+            $password = trim($_POST['password']); 
 
-            $query = "SELECT * FROM USER WHERE email = '$email'";
+            error_log("Input password: " . $password);
+            
+            $query = "SELECT name, email, password FROM USER WHERE email = '$email'";
             $result = mysqli_query($db, $query);
-
+            
             if(mysqli_num_rows($result) > 0) {
                 $user = mysqli_fetch_assoc($result);
-                if(password_verify($password, $user['password'])) {
-                    session_start();
-                    $_SESSION['user_id'] = $user['id'];
+                error_log("User data from DB: " . print_r($user, true));
+                
+                if(password_verify($password, $user['password']) || $password === $user['password']) {
+                    $_SESSION['name'] = $user['name'];
                     $_SESSION['user_email'] = $user['email'];
-                    header("Location: dashboard.php");
-                    exit();
+                    $_SESSION['is_login'] = true;
+                    
+                    // Verifikasi session sebelum redirect
+                    error_log("Session before redirect: " . print_r($_SESSION, true));
+                    
+                    // Beri sedikit delay untuk memastikan session tersimpan
+                    sleep(1);
+                    header("Location: index.php");
                 } else {
                     echo "<script>
                         Swal.fire({
@@ -90,10 +98,10 @@
     <div class="form-container">
         <h1 class="text-center mb-2">Masuk Dulu Yuk..</h1>
         <p class="text-center mb-4">Menfess merupakan platform digital untuk kamu yang malu buat confess ke pujaan hati kamu :v</p>
-        <form class="needs-validation" novalidate>
+        <form class="needs-validation" novalidate method="POST">
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Example@domain.com" required>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Example@domain.com" required>
                 <div class="invalid-feedback">
                     Harap masukkan email yang sesuai
                 </div>
@@ -101,7 +109,7 @@
             <div class="mb-3">
                 <label for="password" class="form-label">Kata Sandi</label>
                 <div class="input-group">
-                    <input type="password" class="form-control" id="password" placeholder="Masukan kata sandi kamu disini" required>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Masukan kata sandi kamu disini" required>
                 </div>
                 <div class="invalid-feedback">
                     Harap masukkan password yang sesuai 
@@ -114,10 +122,10 @@
                 </div>
             </div>
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <a href="signup.html">Belum Punya Akun?</a>
+                <a href="signup.php">Belum Punya Akun?</a>
                 <a href="#">Lupa Kata Sandi?</a>
             </div>
-            <button type="submit" class="btn w-100">Masuk</button>
+            <button type="submit" class="btn w-100" name="login">Masuk</button>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
