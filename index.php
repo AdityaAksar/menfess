@@ -25,7 +25,13 @@
             $content = $_POST['content'];
             $user_id = $_SESSION['id_user'];
             
-            $sql = "INSERT INTO POST (content, id_user, id_category) VALUES ($content, $user_id, $category)";
+
+            if($category == "Pilih Kategori Pesan") {
+                $category=1;
+            }
+            
+            $content = mysqli_real_escape_string($db, $content);
+            $sql = "INSERT INTO post (content, id_user, id_category) VALUES ('$content', $user_id, $category)";
             if(mysqli_query($db, $sql)) {
                 echo "<script>
                     Swal.fire({
@@ -110,11 +116,12 @@
                             <label for="message-text" class="col-form-label">Pesan:</label>
                             <textarea class="form-control" rows="10" id="message-text" name="content"></textarea>
                         </div>
-                        <div class="modal-footer">
+                        <div class="mb-3">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                            <button type="button" class="btn btn-primary" name="kirim">Kirim</button>
+                            <button type="submit" class="btn btn-primary" name="kirim">Kirim</button>
                         </div>
                     </form>
+                </div>
                 </div>
             </div>
         </div>
