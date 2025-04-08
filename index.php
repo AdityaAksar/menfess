@@ -50,6 +50,15 @@
                 </script>";
             }
         }
+        $card_content = " ";
+        $card_user = " ";
+        $card_time = " "; 
+
+        $query = "
+        SELECT post.content, post.tanggal_posting, user.name
+        from post
+        join user on post.id_user=user.id_user";
+        $result = mysqli_query($db, $query);
     ?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 mb-5 bg-white rounded">
         <div class="container-fluid">
@@ -92,7 +101,7 @@
             </div>
         </div>
     </nav>
-    <button type="button" class="btn btn-primary mx-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Buat Postingan</button>
+    <button type="button" class="btn btn-primary mx-5 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Buat Postingan</button>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -124,6 +133,23 @@
                 </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <?php 
+                while ($row = mysqli_fetch_array($result)) {
+                    echo "<div class='col-12 mb-4'>
+                        <div class='card mx-auto' style='max-width: 600px;'>
+                            <div class='card-body'>
+                                <h5 class='card-title mb-3'>".$row["name"]."</h5>
+                                <h6 class='card-subtitle mb-2 text-body-secondary'>".$row["tanggal_posting"]."</h6>
+                                <p class='card-text'>".$row["content"]."</p>
+                            </div>
+                        </div>
+                    </div>";
+                }
+            ?>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
