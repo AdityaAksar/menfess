@@ -58,9 +58,9 @@
                 <div class="input-group">
                     <input type="password" class="form-control" id="password" placeholder="Masukan kata sandi kamu disini" required>
                 </div>
-                <div class="invalid-feedback">
+                <!-- <div class="invalid-feedback">
                     Harap masukkan password yang sesuai 
-                </div>
+                </div> -->
             </div>
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <div class="form-check">
@@ -72,7 +72,7 @@
                 <a href="signup.html">Belum Punya Akun?</a>
                 <a href="#">Lupa Kata Sandi?</a>
             </div>
-            <button type="submit" class="btn w-100">Daftar</button>
+            <button type="submit" class="btn w-100">Masuk</button>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -87,12 +87,11 @@
             form.addEventListener('submit', event => {
                 const passwordInput = form.querySelector('#password');
 
-
-            if (passwordInput.value.length <= 8) {
-                passwordInput.setCustomValidity('Password harus lebih dari 8 karakter');
-            } else {
-                passwordInput.setCustomValidity('');
-            }
+                if (passwordInput.value.length <= 8) {
+                        passwordInput.setCustomValidity('Password harus lebih dari 8 karakter');
+                    } else {
+                        passwordInput.setCustomValidity('');
+                    }
                 if (!form.checkValidity()) {
                     event.preventDefault()
                     event.stopPropagation()
