@@ -146,8 +146,11 @@
                                 <h5 class='card-title mb-3'>".$row["name"]."</h5>
                                 <h6 class='card-subtitle mb-2 text-body-secondary'>".$row["tanggal_posting"]."</h6>
                                 <p class='card-text'>".$row["content"]."</p>
-                                <a href='#' class='card-link'>
+                                <a href='#' class='btn btn-secondary'>
                                     <img src='./node_modules/bootstrap-icons/icons/hand-thumbs-up.svg'> 0 Like
+                                </a>
+                                <a href='#' class='btn btn-secondary'>
+                                    <img src='./node_modules/bootstrap-icons/icons/chat.svg'> 0 Like
                                 </a>
                             </div>
                         </div>
