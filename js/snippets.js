@@ -8,7 +8,7 @@
         
         // Real-time validation for password
         passwordInput.addEventListener('input', () => {
-            if (passwordInput.value.length <= 8) {
+            if (passwordInput.value.length <= 7) {
                 passwordInput.setCustomValidity('Password harus lebih dari 8 karakter');
             } else {
                 passwordInput.setCustomValidity('');

@@ -78,7 +78,7 @@
                         <a class="nav-link" href="#">Paling Dicari</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Ruang</a>
+                        <a class="nav-link" href="ruang.php">Ruang</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
