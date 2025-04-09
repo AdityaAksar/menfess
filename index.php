@@ -137,6 +137,18 @@
     </div>
     <div class="container">
         <div class="row justify-content-center">
+            <div class='col-12 mb-4'>
+                        <div class='card mx-auto' style='max-width: 600px;'>
+                            <div class='card-body'>
+                                <h5 class='card-title mb-3'>".$row["name"]."</h5>
+                                <h6 class='card-subtitle mb-2 text-body-secondary'>".$row["tanggal_posting"]."</h6>
+                                <p class='card-text'>".$row["content"]."</p>
+                                <a href="#" class="card-link">
+                                    <img src="./node_modules/bootstrap-icons/icons/hand-thumbs-up.svg"> 0 Like
+                                </a>
+                            </div>
+                        </div>
+                    </div>
             <?php 
                 while ($row = mysqli_fetch_array($result)) {
                     echo "<div class='col-12 mb-4'>
@@ -145,6 +157,9 @@
                                 <h5 class='card-title mb-3'>".$row["name"]."</h5>
                                 <h6 class='card-subtitle mb-2 text-body-secondary'>".$row["tanggal_posting"]."</h6>
                                 <p class='card-text'>".$row["content"]."</p>
+                                <a href='#' class='card-link'>
+                                    <img src='./node_modules/bootstrap-icons/icons/hand-thumbs-up.svg'> 0 Like
+                                </a>
                             </div>
                         </div>
                     </div>";
