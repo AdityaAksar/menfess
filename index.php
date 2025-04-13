@@ -17,8 +17,8 @@
             header("Location: login.php");
             exit();
         }
+        
 
-        // Handle post submission
         if(isset($_POST["kirim_post"])){
             $category = $_POST['category'];
             $post_content = $_POST['post_content_form'];
@@ -28,7 +28,6 @@
                 $category = 1;
             }
 
-            // Use prepared statement for security
             $stmt = $db->prepare("INSERT INTO post (content, id_user, id_category) VALUES (?, ?, ?)");
             $stmt->bind_param("sii", $post_content, $user_id, $category);
             
@@ -52,7 +51,6 @@
             $stmt->close();
         }
 
-        // Handle comment submission
         if(isset($_POST["kirim_comment"])) {
             $comment_content = trim($_POST['comment_content_form'] ?? '');
             $id_postingan = (int)($_POST['id_post'] ?? 0);
@@ -68,7 +66,6 @@
             } else {
                 $user_id = $_SESSION['id_user'];
                 
-                // Use prepared statement for security
                 $stmt = $db->prepare("INSERT INTO comment (id_post, id_user, comment_content) VALUES (?, ?, ?)");
                 $stmt->bind_param("iis", $id_postingan, $user_id, $comment_content);
                 
@@ -93,7 +90,6 @@
             }
         }
 
-        // Get all posts
         $post_query = "
             SELECT post.id_post, post.content, post.tanggal_posting, user.name
             FROM post
@@ -101,7 +97,6 @@
             ORDER BY post.tanggal_posting DESC";
         $result_post = mysqli_query($db, $post_query);
 
-        // Function to get comments for a specific post
         function getCommentsForPost($db, $post_id) {
             $stmt = $db->prepare("
                 SELECT comment.comment_content, comment.tanggal_komentar, user.name
@@ -115,6 +110,7 @@
             return $stmt->get_result();
         }
     ?>
+    <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 mb-5 bg-white rounded">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
@@ -159,7 +155,7 @@
 
     <button type="button" class="btn btn-primary mx-5 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Buat Postingan</button>
     
-    <!-- Post Creation Modal -->
+    <!-- Post Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -192,7 +188,8 @@
             </div>
         </div>
     </div>
-
+    
+    <!-- Postingan -->
     <div class="container">
         <div class="row justify-content-center">
             <?php 
@@ -256,14 +253,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
     function loadComments(postId) {
-        // Set post ID in the form
         document.getElementById('comment_post_id').value = postId;
         
-        // Clear and show loading message
         const commentContainer = document.getElementById('comment-container');
         commentContainer.innerHTML = '<p class="text-center">Memuat komentar...</p>';
         
-        // Load comments via AJAX
         fetch(`get_comments.php?post_id=${postId}`)
             .then(response => {
                 if (!response.ok) {

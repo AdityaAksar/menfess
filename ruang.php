@@ -11,8 +11,8 @@
     <?php
         session_start();
 
-        if (!isset($_SESSION['user_id'])) {
-            header("Location: signup.php");
+        if (!isset($_SESSION['id_user'])) {
+            header("Location: login.php");
             exit();
         }
     ?>
@@ -34,7 +34,7 @@
                         <a class="nav-link" href="#">Paling Dicari</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Ruang</a>
+                        <a class="nav-link" href="ruang.php">Ruang</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
@@ -57,7 +57,7 @@
         </div>
     </nav>
     <h5 class="mx-5">Komunitas Anda</h5>
-    <div class="row row-cols-1 row-cols-md-3 g-4 mx-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4 mx-4 mb-5">
         <div class="col">
             <div class="card h-100 shadow p-3 mb-3 bg-white rounded">
             <img src="./img/frieren.jpg" class="card-img-top" alt="...">
@@ -81,6 +81,84 @@
                 <a href="#" class="btn btn-primary">Jelajahi</a>
             </div>
             </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 shadow p-3 mb-3 bg-white rounded">
+            <img src="./img/frieren.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn btn-primary">Jelajahi</a>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mx-4 mb-5">
+        <div class="col">
+            <div class="card h-100 shadow p-3 mb-3 bg-white rounded">
+            <img src="./img/frieren.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn btn-primary">Jelajahi</a>
+            </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 shadow p-3 mb-3 bg-white rounded">
+            <img src="./img/frieren.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn btn-primary">Jelajahi</a>
+            </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 shadow p-3 mb-3 bg-white rounded">
+            <img src="./img/frieren.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn btn-primary">Jelajahi</a>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mx-4 mb-5">
+        <div class="col">
+            <div class="card h-100 shadow p-3 mb-3 bg-white rounded">
+            <img src="./img/frieren.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn btn-primary">Jelajahi</a>
+            </div>
+            </div>
+            
+        </div>
+        <div class="col">
+            <div class="card h-100 shadow p-3 mb-3 bg-white rounded">
+            <img src="./img/frieren.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn btn-primary">Jelajahi</a>
+            </div>
+            </div>
+
         </div>
         <div class="col">
             <div class="card h-100 shadow p-3 mb-3 bg-white rounded">

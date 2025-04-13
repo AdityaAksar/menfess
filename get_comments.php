@@ -8,7 +8,7 @@ if (!isset($_GET['post_id']) || !is_numeric($_GET['post_id'])) {
 
 $post_id = (int)$_GET['post_id'];
 
-// Gunakan prepared statement
+
 $stmt = $db->prepare("
     SELECT comment.comment_content, comment.tanggal_komentar, user.name
     FROM comment
