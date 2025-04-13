@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
+    <title>Ruang Cerita</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="./css/style.css">
@@ -92,6 +92,7 @@
                     (SELECT COUNT(*) FROM likes l WHERE l.id_post = p.id_post) AS like_count
                     FROM post p
                     JOIN user u ON p.id_user = u.id_user
+                    WHERE p.id_category=6
                     ORDER BY p.tanggal_posting DESC";
         $result_post = mysqli_query($db, $post_query);
 
@@ -108,7 +109,6 @@
             return $stmt->get_result();
         }
     ?>
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 mb-5 bg-white rounded">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
@@ -118,10 +118,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">Untuk Anda</a>
+                        <a class="nav-link" aria-current="page" href="index.php">Untuk Anda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ruang.php">Ruang</a>
+                        <a class="nav-link active" href="ruang.php">Ruang</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
@@ -143,9 +143,46 @@
         </div>
     </nav>
 
+    <div class="container mb-4 position-relative" style="height: 250px;">
+        <!-- Gambar background buram -->
+        <div class="rounded" style="
+            background-image: url('./img/frieren.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(6px);
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            border-radius: 10px;">
+        </div>
+
+        <!-- Overlay gelap tipis -->
+        <div style="
+            background-color: rgba(0, 0, 0, 0.3);
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            border-radius: 10px;
+            z-index: 2;">
+        </div>
+
+        <!-- Foto profil & nama ruang -->
+        <div class="position-relative d-flex flex-column align-items-center justify-content-center h-100" style="z-index: 3;">
+            <img src="./img/frieren.jpg" alt="Foto Ruang" 
+                    class="rounded-circle shadow" 
+                    style="width: 100px; height: 100px; object-fit: cover; border: 4px solid white;">
+            <h4 class="text-white mt-3 mb-1">Ruang Cerita</h4>
+            <p class="text-white-50 mb-0">Deskripsi singkat tentang ruang ini.</p>
+        </div>
+    </div>
+
+
     <button type="button" class="btn btn-primary mx-5 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Buat Postingan</button>
-    
-    <!-- Post Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -183,8 +220,6 @@
             </div>
         </div>
     </div>
-    
-    <!-- Postingan -->
     <div class="container">
         <div class="row justify-content-center">
             <?php 
@@ -229,8 +264,6 @@
             ?>
         </div>
     </div>
-
-    <!-- Comment Modal -->
     <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-lg">
             <div class="modal-content">
@@ -263,7 +296,6 @@
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
     function loadComments(postId) {

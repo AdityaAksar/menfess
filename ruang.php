@@ -25,16 +25,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Untuk Anda</a>
+                        <a class="nav-link" aria-current="page" href="index.php">Untuk Anda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Terbaru</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Paling Dicari</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="ruang.php">Ruang</a>
+                        <a class="nav-link active" href="ruang.php">Ruang</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
@@ -43,8 +37,6 @@
                             <img src="./node_modules/bootstrap-icons/icons/person-circle.svg" alt="" height="22">
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" class="dropdown-item">Profil</a></li>
-                            <li><a href="#" class="dropdown-item">Ganti Password</a></li>
                             <li><a href="#" class="dropdown-item">Log Out</a></li>
                         </ul>
                     </li>
@@ -60,13 +52,13 @@
     <div class="row row-cols-1 row-cols-md-3 g-4 mx-4 mb-5">
         <div class="col">
             <div class="card h-100 shadow p-3 mb-3 bg-white rounded">
-            <img src="./img/frieren.jpg" class="card-img-top" alt="...">
+            <img src="./img/frieren.jpg" class="card-img-top" alt=".s.">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Ruang Umum</h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             </div>
             <div class="card-footer">
-                <a href="#" class="btn btn-primary">Jelajahi</a>
+                <a href="ruang_umum.php" class="btn btn-primary">Jelajahi</a>
             </div>
             </div>
         </div>
@@ -74,11 +66,11 @@
             <div class="card h-100 shadow p-3 mb-3 bg-white rounded">
             <img src="./img/frieren.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Ruang Sekolah</h5>
                 <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
             </div>
             <div class="card-footer">
-                <a href="#" class="btn btn-primary">Jelajahi</a>
+                <a href="ruang_sekolah.php" class="btn btn-primary">Jelajahi</a>
             </div>
             </div>
         </div>
@@ -86,11 +78,11 @@
             <div class="card h-100 shadow p-3 mb-3 bg-white rounded">
             <img src="./img/frieren.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Ruang Kerja</h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
             </div>
             <div class="card-footer">
-                <a href="#" class="btn btn-primary">Jelajahi</a>
+                <a href="ruang_kerja.php" class="btn btn-primary">Jelajahi</a>
             </div>
             </div>
         </div>
@@ -100,11 +92,11 @@
             <div class="card h-100 shadow p-3 mb-3 bg-white rounded">
             <img src="./img/frieren.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Ruang Romansa</h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             </div>
             <div class="card-footer">
-                <a href="#" class="btn btn-primary">Jelajahi</a>
+                <a href="ruang_romansa.php" class="btn btn-primary">Jelajahi</a>
             </div>
             </div>
         </div>
@@ -112,11 +104,11 @@
             <div class="card h-100 shadow p-3 mb-3 bg-white rounded">
             <img src="./img/frieren.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Ruang Hobi</h5>
                 <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
             </div>
             <div class="card-footer">
-                <a href="#" class="btn btn-primary">Jelajahi</a>
+                <a href="ruang_hobi.php" class="btn btn-primary">Jelajahi</a>
             </div>
             </div>
         </div>
@@ -124,11 +116,11 @@
             <div class="card h-100 shadow p-3 mb-3 bg-white rounded">
             <img src="./img/frieren.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Ruang Cerita</h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
             </div>
             <div class="card-footer">
-                <a href="#" class="btn btn-primary">Jelajahi</a>
+                <a href="ruang_cerita.php" class="btn btn-primary">Jelajahi</a>
             </div>
             </div>
         </div>
@@ -138,11 +130,11 @@
             <div class="card h-100 shadow p-3 mb-3 bg-white rounded">
             <img src="./img/frieren.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Ruang Teknologi</h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             </div>
             <div class="card-footer">
-                <a href="#" class="btn btn-primary">Jelajahi</a>
+                <a href="ruang_teknologi.php" class="btn btn-primary">Jelajahi</a>
             </div>
             </div>
             
@@ -151,11 +143,11 @@
             <div class="card h-100 shadow p-3 mb-3 bg-white rounded">
             <img src="./img/frieren.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Ruang Kehidupan</h5>
                 <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
             </div>
             <div class="card-footer">
-                <a href="#" class="btn btn-primary">Jelajahi</a>
+                <a href="ruang_kehidupan.php" class="btn btn-primary">Jelajahi</a>
             </div>
             </div>
 
@@ -164,11 +156,11 @@
             <div class="card h-100 shadow p-3 mb-3 bg-white rounded">
             <img src="./img/frieren.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Ruang Politik</h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
             </div>
             <div class="card-footer">
-                <a href="#" class="btn btn-primary">Jelajahi</a>
+                <a href="ruang_politik.php" class="btn btn-primary">Jelajahi</a>
             </div>
             </div>
         </div>
