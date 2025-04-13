@@ -122,7 +122,7 @@ $searchQuery = isset($_GET['q']) ? trim($_GET['q']) : '';
                     $like_check_result = mysqli_query($db, $like_check_query);
                     $is_liked = mysqli_num_rows($like_check_result) > 0;
                     
-                    $like_btn_class = $is_liked ? 'btn-danger' : 'btn-secondary';
+                    $like_btn_class = $is_liked ? 'btn-success' : 'btn-secondary';
                     
                     echo '<div class="col-12 mb-4">
                         <div class="card mx-auto" style="max-width: 600px;">
@@ -137,7 +137,7 @@ $searchQuery = isset($_GET['q']) ? trim($_GET['q']) : '';
                                         '.$row['like_count'].' Like
                                     </button>
                                 </form>
-                                <a href="#" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#commentModal" 
+                                <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#commentModal" 
                                     onclick="loadComments('.$post_id.')">
                                     <img src="./node_modules/bootstrap-icons/icons/chat.svg"> Comment
                                 </a>
